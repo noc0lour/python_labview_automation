@@ -86,6 +86,29 @@ class LabVIEWClient(object):
         self._check_for_error(return_vals)
         return return_vals
 
+    def run_vi_asynchronous(self, vi_path, control_values, run_options=0,
+            open_frontpanel=True):
+        """
+        :param vi_path: Absolute path of the VI to run on the remote computer
+        :param control_values: Dictionary of the control values to set on the
+                               target VI
+        :param run_options: Int to specify the LabVIEW run options for the
+                            target VI
+        :param open_frontpanel: Boolean that specifies whether to open front
+                                panel of target VI
+        :param indicator_names: Optional list of strings that specifies the
+                                names of indicators to return. Returns all
+                                indicators if an empty list is specified.
+        """
+        msg = {'command': 'run_vi',
+               'vi_path': vi_path,
+               'run_options': run_options,
+               'open_frontpanel': open_frontpanel,
+               'control_values': control_values}
+
+        self._send_dict(msg)
+        return 0
+
     def describe_error(self, error):
         """
         Sends a message to LabVIEW to describe an error.
