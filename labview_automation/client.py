@@ -104,7 +104,9 @@ class LabVIEWClient(object):
                'vi_path': vi_path,
                'run_options': run_options,
                'open_frontpanel': open_frontpanel,
-               'control_values': control_values}
+               'control_values': control_values,
+               'indicator_names': []}
+
 
         self._send_dict(msg)
         return 0
